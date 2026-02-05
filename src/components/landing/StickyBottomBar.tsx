@@ -32,7 +32,7 @@ const StickyBottomBar = () => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 py-4 px-4 bg-blue-100 border-t-4 border-blue-800 rounded-t-xl">
-      <div className=" flex items-center justify-between max-w-6xl mx-auto">
+      <div className="  flex flex-col gap-2 sm:flex-row items-center justify-between max-w-6xl mx-auto">
         <div className="flex items-center gap-4 font-bold text-lg md:text-2xl">
           <span className="text-black">
             Limited Time Offer
