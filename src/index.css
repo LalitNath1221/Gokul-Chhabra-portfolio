@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-primary: hsl(var(--primary));
+  --color-secondary: hsl(var(--secondary));
+  --color-accent: hsl(var(--accent));
+    --animate-scroll-x: scroll-left 20s linear infinite;
+
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    /* Red CTA color */
+    --primary: 0 85% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Blue accent */
+    --secondary: 220 90% 56%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    /* Gold accent for highlights */
+    --accent: 45 80% 55%;
+    --accent-foreground: 220 20% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 90% 56%;
+
+    --radius: 0.5rem;
+
+    /* Custom colors */
+    --live-red: 0 85% 50%;
+    --cta-red: 0 75% 45%;
+    --cta-red-hover: 0 80% 40%;
+    --blue-primary: 220 90% 56%;
+    --blue-dark: 220 80% 25%;
+    --gold: 45 80% 55%;
+    --green-badge: 145 70% 35%;
+    --navy: 220 50% 15%;
+    --gray-light: 220 14% 96%;
+  }
+}
+
+@layer components {
+  /* Hero gradient background */
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 20% 96%) 50%, hsl(0 0% 100%) 100%);
+    position: relative;
+  }
+  
+  .hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(135deg, transparent 40%, hsl(220 20% 92% / 0.5) 50%, transparent 60%),
+      linear-gradient(-135deg, transparent 40%, hsl(220 20% 92% / 0.5) 50%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Live badge pulse */
+  .live-pulse {
+    animation: pulse-live 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-live {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* CTA Button */
+  .btn-cta {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-white font-bold rounded-lg transition-all duration-300;
+    background: linear-gradient(180deg, hsl(var(--cta-red)) 0%, hsl(0 70% 35%) 100%);
+    box-shadow: 0 4px 15px hsl(0 70% 40% / 0.4);
+  }
+  
+  .btn-cta:hover {
+    background: linear-gradient(180deg, hsl(var(--cta-red-hover)) 0%, hsl(0 70% 30%) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px hsl(0 70% 40% / 0.5);
+  }
+
+  /* Blue Header Badge */
+  .badge-header {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-white font-medium;
+    background: linear-gradient(135deg, hsl(220 80% 45%) 0%, hsl(220 90% 35%) 100%);
+  }
+
+  /* Event Details Card */
+  .event-card {
+    @apply bg-white rounded-xl border border-gray-200 overflow-hidden;
+    box-shadow: 0 4px 20px hsl(220 20% 10% / 0.08);
+  }
+
+  /* Scrolling Banner */
+  .scroll-banner {
+    @apply flex items-center gap-8 py-3;
+    background: linear-gradient(90deg, hsl(var(--blue-dark)) 0%, hsl(var(--navy)) 100%);
+    animation: scroll-left 30s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Section title styling */
+  .section-title {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold text-center;
+    color: hsl(var(--foreground));
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px hsl(220 20% 10% / 0.15);
+  }
+
+  /* Gold text for highlights */
+  .text-gold {
+    color: hsl(45 80% 45%);
+  }
+
+  /* Strikethrough price */
+  .price-strike {
+    @apply line-through text-gray-400 text-sm;
+  }
+
+  /* Achievement marquee */
+  .marquee-container {
+    @apply overflow-hidden relative;
+  }
+
+  .marquee-content {
+    @apply flex gap-6 py-4;
+    animation: marquee 10s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Sticky bottom bar */
+  .sticky-bar {
+    @apply fixed bottom-0 left-0 right-0 z-50 py-3 px-4;
+    background: linear-gradient(90deg, hsl(220 80% 20%) 0%, hsl(220 70% 15%) 100%);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* IE / Edge */
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;                  /* Chrome, Safari */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
